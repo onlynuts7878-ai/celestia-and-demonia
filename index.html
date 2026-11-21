@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Celestia and Demonia - Made for wrists. Built for layers.</title>
+<meta name="description" content="Celestia and Demonia makes rings, bracelets and chains that layer beautifully. Designed to stack, clasp, and chain in all the right ways.">
+<meta name="theme-color" content="#000000">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --black:#000000;
+    --cream:#FFEDD6;
+    --cream-2:#F3E3C8;
+    --ink:#101010;
+    --ink-dim:rgba(16,16,16,.66);
+    --cream-dim:rgba(255,237,214,.62);
+    --line:rgba(255,237,214,.16);
+    --line-light:rgba(16,16,16,.16);
+    --serif:'Fraunces',Georgia,'Times New Roman',serif;
+    --sans:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+    --ease:cubic-bezier(.22,1,.36,1);
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--black);color:var(--cream);font-family:var(--sans);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  img,svg{display:block;max-width:100%}
+  a{color:inherit;text-decoration:none}
+  button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+  ::selection{background:var(--cream);color:var(--black)}
+  :focus-visible{outline:2px solid var(--cream);outline-offset:3px}
+  .container{width:min(1480px,100% - 48px);margin-inline:auto}
+  section{position:relative;padding:clamp(90px,12vw,170px) 0}
+  section--light{background:var(--cream);color:var(--ink)}
+  .dashline{height:1px;border-top:1px dashed var(--line)}
+  section--light .dashline{border-top-color:var(--line-light)}
+
+  /* type */
+  .eyebrow{font-family:var(--sans);font-size:12px;font-weight:600;letter-spacing:.3em;text-transform:uppercase;display:flex;align-items:center;gap:14px;color:var(--cream-dim)}
+  section--light .eyebrow{color:var(--ink-dim)}
+  .eyebrow::after{content:"";height:1px;width:56px;background:var(--cream-dim);opacity:.5}
+  section--light .eyebrow::after{background:var(--ink-dim)}
+  h1,h2,h3{font-family:var(--serif);font-weight:480;line-height:0.98;letter-spacing:-0.015em;color:inherit}
+  .display{font-size:clamp(56px,8.6vw,148px)}
+  h1 em,h2 em,h3 em{font-style:italic;font-weight:340}
+  .lead{font-size:clamp(17px,1.4vw,21px);line-height:1.55;max-width:34rem;font-weight:400}
+  .lead-dark{color:var(--ink-dim)}
+  .h-serif-block{font-size:clamp(40px,5.4vw,92px)}
+
+  /* buttons */
+  .btn{display:inline-flex;align-items:center;gap:10px;padding:16px 30px;border-radius:999px;background:var(--cream);color:var(--black);font-weight:600;font-size:13px;letter-spacing:.08em;text-transform:uppercase;transition:transform .5s var(--ease),background .3s,color .3s}
+  .btn:hover{transform:translateY(-3px)}
+  .btn--ghost{border:1px solid var(--line);color:var(--cream);border-radius:999px;padding:16px 30px;font-weight:500;font-size:13px;letter-spacing:.08em;text-transform:uppercase;transition:.35s}
+  .btn--ghost:hover{border-color:var(--cream);background:rgba(255,237,214,.06)}
+  .btn--ink{background:var(--ink);color:var(--cream)}
+  .btn--ink:hover{background:#262626}
+  .btn svg{width:12px;height:12px;fill:currentColor}
+
+  /* header */
+  header{position:fixed;top:0;left:0;right:0;z-index:50;transition:background .4s,border-color .4s;border-bottom:1px solid transparent}
+  header.scrolled{background:rgba(0,0,0,.72);backdrop-filter:blur(14px);border-bottom-color:var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;padding:20px 0}
+  .nav__logo{font-family:var(--serif);font-size:27px;letter-spacing:.02em;color:var(--cream)}
+  .nav__logo sup{font-size:11px}
+  .nav__links{display:flex;gap:34px}
+  .nav__links a{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--cream-dim);transition:color .3s}
+  .nav__links a:hover{color:var(--cream)}
+  .nav__cta{display:flex;align-items:center;gap:20px}
+  .nav__burger{display:none;width:44px;height:44px;border:1px solid var(--line);border-radius:50%;align-items:center;justify-content:center}
+  .nav__burger svg{width:20px;height:20px;fill:none;stroke:var(--cream);stroke-width:1.5}
+  .nav__burger.open svg:before{content:"";position:absolute;width:18px;height:1.5px;background:var(--cream);top:9px}
+  .nav__burger.open svg:after{content:"";position:absolute;width:18px;height:1.5px;background:var(--cream);bottom:9px}
+  .nav__burger span{position:absolute}
+  .mobile-menu{position:fixed;inset:0;background:rgba(0,0,0,.97);z-index:60;display:flex;flex-direction:column;justify-content:center;padding:40px;gap:30px;opacity:0;pointer-events:none;transition:opacity .4s}
+  .mobile-menu.open{opacity:1;pointer-events:auto}
+  .mobile-menu a{font-family:var(--serif);font-size:clamp(34px,8vw,56px);color:var(--cream)}
+
+  /* hero */
+  #home{min-height:100svh;display:flex;align-items:center;padding:150px 0 90px;overflow:hidden}
+  .hero__grid{display:grid;grid-template-columns:1.12fr .88fr;gap:56px;align-items:center}
+  .hero__copy .lead{margin:26px 0 40px}
+  .hero__ctas{display:flex;gap:16px;flex-wrap:wrap}
+  .hero__meta{margin-top:54px;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--cream-dim)}
+  .hero__meta b{color:var(--cream)}
+  .hero__visual{position:relative;height:min(62vh,560px)}
+  .hero__art{position:absolute;inset:0;display:grid;place-items:center}
+  .hero__halo{position:absolute;width:72%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 50% 42%,rgba(255,237,214,.16),rgba(201,143,90,.05) 55%,transparent 72%)}
+  .hero__ring{position:absolute;width:47%;aspect-ratio:1;border-radius:50%;border:1px solid rgba(255,237,214,.5);border-top-color:transparent;animation:spin 10s linear infinite}
+  .hero__ring--inner{inset:27%;border:none;border-radius:50%;background:radial-gradient(circle at 42% 38%,#FFEDD6 0%,#C98F5A 55%,#5E3A22 100%)}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .hero__float{position:absolute;font-family:var(--serif);font-size:15px;color:var(--cream);border:1px solid var(--line);border-radius:999px;padding:12px 20px;background:rgba(0,0,0,.45);backdrop-filter:blur(6px)}
+  .hero__float--a{top:6%;right:2%}
+  .hero__float--b{bottom:16%;left:-4%}
+  .hero__float b{display:block;font-family:var(--serif);font-size:22px;font-weight:400}
+  .hero__card{position:absolute;left:0;right:0;bottom:0;margin:0 auto;width:min(430px,86%);border:1px solid var(--line);border-radius:20px;padding:28px 30px;background:rgba(0,0,0,.42);backdrop-filter:blur(8px)}
+  .hero__card h4{font-family:var(--serif);font-weight:400;font-size:26px;line-height:1.15}
+  .hero__card .dashline{margin:18px 0}
+  .hero__card p{font-size:15px;color:var(--cream-dim);line-height:1.55}
+  .hero__video{position:absolute;inset:0;margin:auto;width:min(420px,86%);aspect-ratio:16/9;border-radius:18px;overflow:hidden;border:1px solid var(--line);background:linear-gradient(135deg,#1c1410 0%,#0c0906 45%,#3a2416 100%)}
+  .hero__video::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 70% 30%,rgba(255,237,214,.14),transparent 55%)}
+  .hero__play{position:absolute;inset:0;display:grid;place-items:center;transition:transform .3s}
+  .hero__play span{transition:transform .3s}
+  .hero__play span:hover{transform:scale(1.08)}
+  .hero__copy .badge{position:absolute;left:0;bottom:0;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--cream-dim)}
+
+  /* generic section text */
+  .sec-head{margin-bottom:clamp(50px,6vw,80px)}
+  .sec-head h2{font-size:clamp(44px,6vw,96px);margin:22px 0 26px}
+  .sec-head .lead{margin-bottom:0}
+
+  /* engine (cream) */
+  .engine__grid{display:grid;grid-template-columns:1.2fr .8fr;gap:60px;align-items:start}
+  .chips{display:flex;gap:12px;flex-wrap:wrap;margin-top:40px}
+  .chip{border:1px solid var(--line-light);border-radius:999px;padding:12px 20px;font-size:13px;letter-spacing:.04em;color:var(--ink);background:rgba(16,16,16,.03)}
+  .chip b{font-family:var(--serif);font-weight:500;font-size:17px}
+
+  /* wearable */
+  .wear__visual{margin-top:60px;border:1px solid var(--line);border-radius:24px;padding:clamp(20px,4vw,48px);background:rgba(255,237,214,.03);overflow:hidden}
+  .chain{display:flex;justify-content:center;gap:0}
+  .chain i{display:block;border-radius:999px;border:1px solid rgba(255,237,214,.5);margin:0 -1px}
+  ... need real sizes; simpler: .chain{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+  Use links: small rounded bars. I'll do flex row of pill-shaped links with alternating offsets. Fine.
+
+  /* wear */
+  .wear__visual{margin-top:60px;border:1px solid var(--line);border-radius:24px;padding:clamp(20px,4vw,48px);background:rgba(255,237,214,.03);overflow:hidden}
+  .chain{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;padding:40px 0}
+  .chain i{width:28px;height:28px;border-radius:50%;border:1px solid rgba(255,237,214,.55);background:rgba(255,237,214,.05)}
+
+  /* features (cream) */
+  .features__list{border-top:1px dashed var(--line-light)}
+  .feature{display:grid;grid-template-columns:120px 1fr;gap:40px;padding:44px 0;border-bottom:1px dashed var(--line-light)}
+  .feature__tag{font-size:12px;letter-spacing:.24em;text-transform:uppercase;opacity:.6;font-weight:600}
+  .feature__tag b{display:block;font-family:var(--serif);font-size:44px;font-weight:400;margin-top:10px;letter-spacing:0}
+  .feature h3{font-size:clamp(34px,3.6vw,60px);margin:14px 0 18px}
+  .feature p{max-width:30rem;opacity:.75;font-size:17px}
+
+  .gallery-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:60px}
+  .gallery-grid img{width:100%;height:340px;object-fit:cover;border-radius:20px;display:block}
+
+  /* materials */
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:var(--line);border:1px solid var(--line)}
+  .stat{background:var(--black);padding:34px 30px}
+  .stat b{display:block;font-family:var(--serif);font-size:clamp(44px,4.6vw,76px);font-weight:400;line-height:1}
+  .stat span{display:block;margin-top:14px;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--cream-dim)}
+  section--light .stat{background:var(--cream);color:var(--ink)}
+  section--light .stat span{color:var(--ink-dim)}
+
+  /* products */
+  .tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  .tier{border:1px solid var(--line-light);border-radius:24px;padding:36px 30px;background:rgba(16,16,16,.025);display:flex;flex-direction:column;gap:18px}
+  .tier__num{font-family:var(--serif);font-size:20px;opacity:.5}
+  .tier h3{font-size:clamp(30px,2.6vw,44px)}
+  .tier p{opacity:.75;font-size:15px}
+  .tier__price{font-family:var(--serif);font-size:30px}
+  .tier .btn{margin-top:auto;align-self:flex-start}
+
+  /* reviews */
+  .reviews__list{display:grid;gap:0}
+  .review{padding:44px 0;border-bottom:1px dashed var(--line)}
+  .review__stars{font-size:14px;letter-spacing:6px}
+  .review blockquote{font-family:var(--serif);font-size:clamp(26px,2.8vw,44px);font-weight:400;line-height:1.2;margin:22px 0}
+  .review cite{font-style:normal;font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--cream-dim)}
+  .review cite b{display:block;color:var(--cream);font-family:var(--serif);font-size:19px;letter-spacing:0;text-transform:none;margin-top:8px}
+
+  /* cta */
+  .cta{text-align:left}
+  .cta h2{font-size:clamp(56px,8vw,140px)}
+  .cta p{max-width:30rem;opacity:.75}
+
+  footer{border-top:1px solid var(--line);padding:40px 0}
+  footer .container{display:flex;justify-content:space-between;gap:30px;flex-wrap:wrap;align-items:center}
+  footer p{font-size:13px;color:var(--cream-dim)}
+  footer a{font-size:13px;color:var(--cream-dim);margin-left:26px}
+  footer a:hover{color:var(--cream)}
+
+  /* reveal */
+  .reveal{opacity:0;transform:translateY(34px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+  .reveal.in{opacity:1;transform:none}
+</style>
+</head>
+<body>
+
+<header id="site-header">
+  <div class="container nav">
+    <a href="#home" class="nav__logo" data-nav-logo>Celestia and Demonia</a>
+    <nav class="nav__links" id="nav-links">
+      <a href="#stack">The Stack</a>
+      <a href="#engine">Engine</a>
+      <a href="#materials">Materials</a>
+      <a href="#reviews">Reviews</a>
+    </nav>
+    <div class="nav__cta">
+      <a href="#shop" class="btn">Stack yours</a>
+      <button class="nav__burger" id="nav-burger" aria-label="Open menu" aria-expanded="false"><span></span></button>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobile-menu">
+  <a href="#stack">The Stack</a>
+  <a href="#engine">The Engine</a>
+  <a href="#materials">Materials</a>
+  <a href="#reviews">Reviews</a>
+</div>
+
+<main>
+
+  <!-- HERO -->
+  <section id="home">
+    <div class="container hero__grid">
+      <div class="hero__copy">
+        <div class="eyebrow">Made for wrists. Built for layers.</div>
+        <h1 class="display" style="margin:26px 0 28px">Isn't just an <em>accessory</em>.</h1>
+        <p class="lead">Designed to layer, clasp, and chain in all the right ways. Celestia and Demonia makes the simple moment feel considered.</p>
+        <div class="hero__ctas">
+          <a href="#shop" class="btn">Stack yours</a>
+          <a href="#engine" class="btn btn--ghost"><span style="display:inline-flex;align-items:center;gap:10px"><svg viewBox="0 0 12 10" aria-hidden="true"><path d="M1 5h10M5 1v8"/></svg>Watch the film</span></a>
+        </div>
+        <div class="hero__meta"><b>Celestia and Demonia</b> — rings · bracelets · chains · made in small batches</div>
+      </div>
+      <div class="hero__visual" aria-hidden="true">
+        <div class="hero__art">
+          <div class="hero__halo"></div>
+          <div class="hero__ring"></div>
+          <div class="hero__ring hero__ring--inner"></div>
+        </div>
+        <div class="hero__float hero__float--a"><b>100%</b>steel, layered<br>with love</div>
+        <div class="hero__float hero__float--b"><b>01</b>stack no. 4,217</div>
+        <div class="hero__video">
+          <div class="hero__play"><span></span></div>
+        </div>
+        <div class="hero__card">
+          <h4>Designed by Celestia and Demonia,<br>the award-winning studio.</h4>
+          <div class="dashline"></div>
+          <p>The world's most unnecessarily sophisticated accessory.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ENGINE -->
+  <section id="engine" class="section--light">
+    <div class="container engine__grid">
+      <div>
+        <div class="eyebrow">The Charm Engine</div>
+        <h1 class="display" style="margin:26px 0 28px">Powered by <em>Celestia and Demonia</em>.</h1>
+        <p class="lead">AI fills in the gaps. We said stainless steel. It heard rose gold.</p>
+        <p class="lead lead-dark" style="margin-top:20px;max-width:38rem">Charm is a process. Celestia and Demonia researches, drafts, and polishes until the piece feels inevitable.</p>
+      </div>
+      <div>
+        <div class="chips">
+          <div class="chip">one charm <b>/ second</b></div>
+          <div class="chip">zero <b>/ regrets</b></div>
+          <div class="chip">infinite <b>/ layers</b></div>
+        </div>
+        <p style="margin-top:40px;font-size:14px;letter-spacing:.14em;text-transform:uppercase;opacity:.6">\* a very good clasp. human taste, machine speed.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- WEAR -->
+  <section id="wear">
+    <div class="container">
+      <div class="eyebrow">Now wearable</div>
+      <h2 class="display h-serif-block" style="margin:24px 0 26px">So long, it's a <em>chain</em>.</h2>
+      <p class="lead" style="max-width:40rem">One chain, three clasps, infinite layering. Keep the good stuff close.</p>
+      <div class="wear__visual" aria-hidden="true">
+        <div class="chain">
+          <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section id="stack" class="section--light">
+    <div class="container">
+      <div class="sec-head">
+        <div class="eyebrow">Mechanism</div>
+        <h2 class="display">The <em>Stack</em>.</h2>
+        <p class="lead lead-dark">Three mechanisms. One obsession: the stack should never look like an accident.</p>
+      </div>
+      <div class="features__list">
+        <div class="feature">
+          <div class="feature__tag">01 · Layer-locked</div>
+          <div>
+            <h3>Wears with everything. Belongs to nothing.</h3>
+            <p>Micro-textured links so grippy your wrist asked for forgiveness. Friction coefficient, est.: uncomfortably excellent.</p>
+          </div>
+        </div>
+        <div class="feature">
+          <div class="feature__tag">02 · Cast-perfect</div>
+          <div>
+            <h3>Forty-one steps. Zero shortcuts.</h3>
+            <p>Lost-wax casting from surgical steel. The accessory that took its job seriously.</p>
+          </div>
+        </div>
+        <div class="feature">
+          <div class="feature__tag">03 · Clasp that commits</div>
+          <div>
+            <h3>Finally, a clasp that commits.</h3>
+            <p>Magnetic, interchangeable, emotionally available. Your stack finally stops second-guessing itself.</p>
+          </div>
+        </div>
+        <div class="feature">
+          <div class="feature__tag">04 · Rust-proof</div>
+          <div>
+            <h3>Weather doesn't get a vote.</h3>
+            <p>Salt, rain, sand, sweat. The finish doesn't flinch. Your stack is out there now.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section id="gallery" class="section--light">
+    <div class="container">
+      <div class="eyebrow">The Rack</div>
+      <h2 class="display">A rack <em>worth</em> keeping.</h2>
+      <div class="gallery-grid">
+        <img src="/images/gallery/01-intaglio-with-eros-on-a-swan-set-in-a-ring-4th-3rd-century-b.jpg" alt="Gold ring set in a swan, antique — real CC0 photo">
+        <img src="/images/gallery/01-seven-chakra-bracelet-wrist.webp" alt="Seven chakra bracelet on wrist — real CC0 photo">
+        <img src="/images/gallery/01-necklace-chain-jewellery.jpg" alt="Necklace and chain jewellery — real CC0 photo">
+        <img src="/images/gallery/01-gold-ring-and-crow-plume.jpg" alt="Gold ring and plume — real CC0 photo">
+      </div>
+    </div>
+  </section>
+
+  <!-- MATERIALS -->
+  <section id="materials">
+    <div class="container">
+      <div class="eyebrow">Materials</div>
+      <h2 class="display h-serif-block" style="margin:24px 0 60px">100% steel.<br><em>100% stackable.</em></h2>
+      <div class="stats">
+        <div class="stat"><b>316L</b><span>surgical steel</span></div>
+        <div class="stat"><b>1.2MM</b><span>wire gauge</span></div>
+        <div class="stat"><b>100%</b><span>finished</span></div>
+        <div class="stat"><b>1.4M</b><span>stacks made</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUCTS -->
+  <section id="shop" class="section--light">
+    <div class="container">
+      <div class="sec-head">
+        <div class="eyebrow">The Stack</div>
+        <h2 class="display">Choose your <em>stack</em>.</h2>
+      </div>
+      <div class="tiers">
+        <article class="tier">
+          <div class="tier__num">01</div>
+          <h3>The Wrist</h3>
+          <p>One bracelet. Enough. The everyday layer. The one you forget you own until you love it.</p>
+          <div class="tier__price">$120</div>
+          <a href="#home" class="btn btn--ink">Add to stack</a>
+        </article>
+        <article class="tier">
+          <div class="tier__num">02</div>
+          <h3>The Arm</h3>
+          <p>Two bracelets. Double the commitment. For taller stacks and longer stories.</p>
+          <div class="tier__price">$240</div>
+          <a href="#home" class="btn btn--ink">Add to stack</a>
+        </article>
+        <article class="tier">
+          <div class="tier__num">03</div>
+          <h3>The Layer</h3>
+          <p>Ring + chain + bracelet. The full architecture. Maximum overlap, maximum meaning.</p>
+          <div class="tier__price">$340</div>
+          <a href="#home" class="btn btn--ink">Add to stack</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- REVIEWS -->
+  <section id="reviews">
+    <div class="container">
+      <div class="sec-head">
+        <div class="eyebrow">Reviews</div>
+        <h2 class="display">People all over the world <em>love Celestia and Demonia</em>.</h2>
+        <p class="lead">Custom reviews <b>[ 364 ]</b> · average rating <b>[ 4.9 / 5 ]</b></p>
+      </div>
+      <div class="reviews__list">
+        <figure class="review">
+          <div class="review__stars">★★★★★</div>
+          <blockquote>"My stack went from outfit to signature in one weekend."</blockquote>
+          <figcaption class="review__author"><b>Mara V.</b> jewelry designer, Lisbon</figcaption>
+        </figure>
+        <figure class="review">
+          <div class="review__stars">★★★★★</div>
+          <blockquote>"The clasp. The clasp. The clasp. I have never trusted jewelry before. I trust this one."</blockquote>
+          <figcaption class="review__author"><b>Dev T.</b> collector, Brooklyn</figcaption>
+        </figure>
+        <figure class="review">
+          <div class="review__stars">★★★★★</div>
+          <blockquote>"Every link is individually cast, individually polished, individually obsessed over."</blockquote>
+          <figcaption class="review__author"><b>Priya K.</b> layerer, Toronto</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section id="contact" class="section--light">
+    <div class="container">
+      <div class="eyebrow">Finale</div>
+      <h2 class="display cta"><em>Let's stack.</em></h2>
+      <p class="lead lead-dark" style="max-width:36rem;margin:30px 0 44px">Tell us the story your wrist has been waiting for. Small batches, big feelings.</p>
+      <a href="#home" class="btn">Start your stack</a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="container">
+    <a href="#home" class="nav__logo">Celestia and Demonia</a>
+    <nav>
+      <a href="#stack">The Stack</a>
+      <a href="#engine">Engine</a>
+      <a href="#materials">Materials</a>
+      <a href="#reviews">Reviews</a>
+    </nav>
+    <p>© <span id="year">2026</span> Celestia and Demonia Studio · rings · bracelets · chains</p>
+  </div>
+</footer>
+
+<script>
+  const burger = document.getElementById('nav-burger');
+  const menu = document.getElementById('mobile-menu');
+  const nav = document.getElementById('site-header');
+
+  burger.addEventListener('click', () => {
+    const open = menu.classList.toggle('open');
+    burger.classList.toggle('open', open);
+    burger.setAttribute('aria-expanded', open);
+  });
+  menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    menu.classList.remove('open');
+    burger.classList.remove('open');
+    burger.setAttribute('aria-expanded', 'false');
+  }));
+
+  const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 24);
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  const floats = document.querySelectorAll('.hero__float');
+  const art = document.querySelector('.hero__ring');
+  window.addEventListener('scroll', () => {
+    const y = window.scrollY;
+    if (y < window.innerHeight) {
+      floats.forEach((f, i) => f.style.transform = `translateY(${y * (0.12 + i * 0.05)}px)`);
+      art.style.transform = `rotate(${(y / 40) % 360}deg)`;
+    }
+  }, { passive: true });
+</script>
+</body>
+</html>
